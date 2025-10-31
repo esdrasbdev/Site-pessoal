@@ -27,9 +27,9 @@ const projects = [
     title: "Coffe Shop",
     description: "Aplicação web que permite gerenciar e realizar compras de cafés de forma simples e intuitiva.",
     image: "/Coffe Shop.png",
-    technologies: ["React", "TypeScript", "JavaScript" , "Node.js" ],
-    github: "https://github.com/esdrasbdev/Coffe-Shop.git",
-    demo: "#",
+    technologies: ["React", "TypeScript", "JavaScript" , "Next.js" ],
+    github: "https://github.com/esdrasbdev/Coffe-Shop-2.0.git",
+    demo: "https://coffe-shop-2-0.vercel.app/#",
   },
 ]
 
