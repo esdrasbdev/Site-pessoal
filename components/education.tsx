@@ -67,7 +67,7 @@ export function Education() {
                   </div>
                   <div>
                     <p className="font-medium">Interface e Experiência do Usuário</p>
-                    <p className="text-sm text-muted-foreground">UI/UX, Figma, Design Responsivo</p>
+                    <p className="text-sm text-muted-foreground">UI/UX, Figma, Design Responsivo </p>
                   </div>
                 </div>
               </div>
