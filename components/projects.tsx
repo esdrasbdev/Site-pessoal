@@ -7,13 +7,13 @@ import { Github, ExternalLink } from "lucide-react"
 
 const projects = [
   {
-    title: "Jiu Class",
+    title: "Obshop",
     description:
-      "Sistema web de gestão de alunos de jiu-jitsu, com funcionalidades de chamada, cadastro, evolução de faixa e muito mais.",
-    image: "/jiu-jitsu-management-system-dashboard.jpg",
-    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
-    github: "#",
-    demo: "#",
+      "Prototipação de uma loja online de roupas do estilo streetwear, focada em um público jovem e descolado.",
+    image: "/Obshop.png",
+    technologies: ["Figma", "Design Responsivo" , "Prototipação", "Design de UI/UX"],
+    github: "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
+    demo: "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
   },
   {
     title: "Portfólio Pessoal",
