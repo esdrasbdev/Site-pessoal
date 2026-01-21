@@ -1,11 +1,21 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink, Figma } from "lucide-react" // ✅ Importa o ícone do Figma
+import { Github, ExternalLink, Figma, ChevronLeft, ChevronRight } from "lucide-react"
 
-const projects = [
+type Project = {
+  title: string
+  description: string
+  image: string
+  technologies: string[]
+  github: string
+  demo: string
+  isFigma?: boolean
+}
+
+const projects: Project[] = [
   {
     title: "Obshop",
     description:
@@ -16,6 +26,7 @@ const projects = [
       "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
     demo:
       "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
+    isFigma: true,
   },
   {
     title: "Portfólio Pessoal",
@@ -35,10 +46,22 @@ const projects = [
     github: "https://github.com/esdrasbdev/Coffe-Shop-2.0.git",
     demo: "https://coffe-shop-2-0.vercel.app/#",
   },
+  {
+    title: "Milk Log",
+    description:
+      "Aplicação para gerenciamento e rastreamento de produção de leite, otimizando o controle de qualidade.",
+    image: "/milklog.png",
+    technologies: ["React Native", "TypeScript", "Styled-Components", "Node.js"],
+    github: "https://github.com/esdrasbdev/Milklog.git",
+    demo: "https://milklog-demo.netlify.app",
+  },
 ]
 
 export function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,8 +84,53 @@ export function Projects() {
     return () => observer.disconnect()
   }, [])
 
+  const handleNav = (direction: "left" | "right") => {
+    const container = scrollContainerRef.current
+    if (container) {
+      const card = container.querySelector<HTMLElement>(".project-card")
+      if (card) {
+        const scrollAmount = card.offsetWidth + 24 // 24px is gap-6
+        container.scrollBy({
+          left: direction === "left" ? -scrollAmount : scrollAmount,
+          behavior: "smooth",
+        })
+      }
+    }
+  }
+
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const checkScrollability = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = container
+      setCanScrollLeft(scrollLeft > 0)
+      setCanScrollRight(Math.ceil(scrollLeft) < scrollWidth - clientWidth)
+    }
+
+    // Initial check after a short delay to ensure layout is stable
+    const timeoutId = setTimeout(checkScrollability, 100)
+    container.addEventListener("scroll", checkScrollability)
+    window.addEventListener("resize", checkScrollability)
+
+    return () => {
+      clearTimeout(timeoutId)
+      container.removeEventListener("scroll", checkScrollability)
+      window.removeEventListener("resize", checkScrollability)
+    }
+  }, [projects])
+
   return (
     <section id="projetos" ref={sectionRef} className="py-20 px-4">
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+      `}</style>
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 fade-in-item opacity-0">
           Projetos
@@ -71,23 +139,24 @@ export function Projects() {
           Alguns dos projetos que desenvolvi durante minha jornada
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative">
+          <div ref={scrollContainerRef} className="flex overflow-x-auto scrollbar-hide pb-4 gap-6 snap-x snap-mandatory -mx-4 px-4">
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="overflow-hidden fade-in-item opacity-0 hover:shadow-xl transition-all duration-300 group"
+              className="project-card min-w-[300px] md:min-w-[380px] flex-shrink-0 snap-center overflow-hidden fade-in-item opacity-0 hover:shadow-xl transition-all duration-300 group"
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold">{project.title}</h3>
+              <div className="p-4 space-y-3">
+                <h3 className="text-lg font-semibold">{project.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
@@ -111,8 +180,7 @@ export function Projects() {
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      {/* ✅ Muda o ícone apenas no primeiro card */}
-                      {index === 0 ? (
+                      {project.isFigma ? (
                         <>
                           <Figma className="h-4 w-4" />
                           Figma
@@ -136,6 +204,28 @@ export function Projects() {
               </div>
             </Card>
           ))}
+          </div>
+
+          {canScrollLeft && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-10 w-10 shadow-md z-10 transition-opacity animate-in fade-in duration-300"
+              onClick={() => handleNav("left")}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+          )}
+          {canScrollRight && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-10 w-10 shadow-md z-10 transition-opacity animate-in fade-in duration-300"
+              onClick={() => handleNav("right")}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </section>
