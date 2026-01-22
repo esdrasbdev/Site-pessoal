@@ -58,7 +58,7 @@ export function Education() {
                   </div>
                   <div>
                     <p className="font-medium">Desenvolvimento Web</p>
-                    <p className="text-sm text-muted-foreground">HTML, CSS, JavaScript, React</p>
+                    <p className="text-sm text-muted-foreground">React, Angular, Node.js, Vue.js</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
