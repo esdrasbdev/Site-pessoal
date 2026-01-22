@@ -140,22 +140,22 @@ export function Projects() {
         </p>
 
         <div className="relative">
-          <div ref={scrollContainerRef} className="flex overflow-x-auto scrollbar-hide pb-4 gap-6 snap-x snap-mandatory -mx-4 px-4">
+          <div ref={scrollContainerRef} className="grid grid-cols-1 md:flex md:overflow-x-auto scrollbar-hide pb-4 gap-6 md:snap-x md:snap-mandatory md:-mx-4 md:px-4">
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="project-card min-w-[300px] md:min-w-[380px] flex-shrink-0 snap-center overflow-hidden fade-in-item opacity-0 hover:shadow-xl transition-all duration-300 group"
+              className="project-card w-full md:w-[380px] flex-shrink-0 md:snap-center overflow-hidden fade-in-item opacity-0 hover:shadow-xl transition-all duration-300 group flex flex-col"
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-auto aspect-video object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
-              <div className="p-4 space-y-3">
+              <div className="p-4 space-y-3 flex flex-col flex-1">
                 <h3 className="text-lg font-semibold">{project.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
@@ -172,7 +172,7 @@ export function Projects() {
                   ))}
                 </div>
 
-                <div className="flex gap-3 pt-2">
+                <div className="flex gap-3 pt-2 mt-auto">
                   <Button
                     variant="outline"
                     size="sm"
