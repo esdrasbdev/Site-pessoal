@@ -27,6 +27,7 @@ export function Header() {
 
   const navItems = [
     { label: "Sobre Mim", href: "#sobre" },
+    { label: "Habilidades", href: "#habilidades" },
     { label: "Formação Acadêmica", href: "#formacao" },
     { label: "Projetos", href: "#projetos" },
     { label: "Contato", href: "#contato" },
