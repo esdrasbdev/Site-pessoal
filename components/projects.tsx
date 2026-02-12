@@ -13,9 +13,20 @@ type Project = {
   github: string
   demo: string
   isFigma?: boolean
+  demoLabel?: string
 }
 
 const projects: Project[] = [
+  {
+    title: "Landing Page Advocacia",
+    description:
+      "Landing page estratégica desenvolvida para uma advogada, focada em transmitir autoridade, apresentar serviços jurídicos e otimizar a captação de clientes.",
+    image: "/advocacia.png",
+    technologies: ["JavaScript", "Node.js", "CSS" , "Figma"],
+    github: "#",
+    demo: "https://www.gessicasampaioadvocacia.com#",
+    demoLabel: "Site Oficial",
+  },
   {
     title: "Obshop",
     description:
@@ -173,6 +184,7 @@ export function Projects() {
                 </div>
 
                 <div className="flex gap-3 pt-2 mt-auto">
+                  {project.github && project.github !== "#" && (
                   <Button
                     variant="outline"
                     size="sm"
@@ -193,11 +205,12 @@ export function Projects() {
                       )}
                     </a>
                   </Button>
+                  )}
 
                   <Button size="sm" className="flex-1 gap-2" asChild>
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4" />
-                      Demo
+                      {project.demoLabel || "Demo"}
                     </a>
                   </Button>
                 </div>
