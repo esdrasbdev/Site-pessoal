@@ -86,8 +86,14 @@ export function Skills() {
   ]
 
   return (
-    <section id="habilidades" ref={sectionRef} className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="habilidades" ref={sectionRef} className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 fade-in-item opacity-0 translate-y-8 transition-all duration-700">
           Habilidades
         </h2>
@@ -99,10 +105,10 @@ export function Skills() {
           {categories.map((category, index) => (
             <Card
               key={index}
-              className="p-8 fade-in-item opacity-0 translate-y-8 transition-all duration-700 hover:shadow-lg border-none bg-card/50 backdrop-blur-sm"
+              className="p-8 fade-in-item opacity-0 translate-y-8 transition-all duration-700 hover:shadow-xl border-none bg-card/50 backdrop-blur-sm group hover:-translate-y-1"
             >
               <div className="flex flex-col items-center gap-4 mb-8">
-                <div className={`p-3 ${category.bgColor} rounded-xl`}>
+                <div className={`p-3 ${category.bgColor} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
                   <category.icon className={`h-6 w-6 ${category.color}`} />
                 </div>
                 <h3 className="text-xl font-bold text-center">{category.title}</h3>
@@ -112,16 +118,17 @@ export function Skills() {
                 {category.skills.map((skill, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center gap-3 group cursor-pointer"
+                    className="flex flex-col items-center gap-3 group/skill cursor-pointer"
                   >
-                    <div className="relative w-20 h-20 flex items-center justify-center bg-background rounded-2xl shadow-sm border border-border/50 group-hover:scale-110 group-hover:shadow-md transition-all duration-300 ease-out group-hover:-rotate-3">
+                    <div className="relative w-20 h-20 flex items-center justify-center bg-background rounded-2xl shadow-sm border border-border/50 group-hover/skill:scale-110 group-hover/skill:shadow-lg transition-all duration-300 ease-out group-hover/skill:-rotate-3">
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 to-primary/0 group-hover/skill:from-primary/5 group-hover/skill:to-secondary/5 transition-all duration-300"></div>
                       <img 
                         src={skill.icon} 
                         alt={skill.name} 
-                        className={`w-10 h-10 object-contain transition-transform duration-300 ${skill.className || ''}`}
+                        className={`w-10 h-10 object-contain transition-transform duration-300 group-hover/skill:scale-110 ${skill.className || ''}`}
                       />
                     </div>
-                    <span className="text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors text-center">
+                    <span className="text-xs font-medium text-muted-foreground group-hover/skill:text-primary transition-colors text-center">
                       {skill.name}
                     </span>
                   </div>

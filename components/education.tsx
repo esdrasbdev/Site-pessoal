@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { Card } from "@/components/ui/card"
-import { GraduationCap, BookOpen, Network } from "lucide-react"
+import { GraduationCap, BookOpen, Network, Award } from "lucide-react"
 
 export function Education() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -36,38 +36,43 @@ export function Education() {
       <div className="container mx-auto max-w-4xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 fade-in-item opacity-0">Formação Acadêmica</h2>
 
-        <Card className="p-8 fade-in-item opacity-0">
+        {/* UFC - Engenharia de Software */}
+        <Card className="p-8 mb-6 fade-in-item opacity-0 border-l-4 border-l-primary">
           <div className="flex items-start gap-6">
             <div className="p-4 bg-primary/10 rounded-lg shrink-0">
               <GraduationCap className="h-10 w-10 text-primary" />
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold">Sistemas de Informação</h3>
-              <p className="text-lg text-primary font-medium">Instituto Federal do Ceará (IFCE)</p>
+              <div className="flex items-center gap-3 flex-wrap">
+                <h3 className="text-2xl font-semibold">Engenharia de Software</h3>
+                <span className="px-3 py-1 bg-green-500/10 text-green-600 text-xs font-medium rounded-full border border-green-500/20">
+                  Ingressante 2026.2
+                </span>
+              </div>
+              <p className="text-lg text-primary font-medium">Universidade Federal do Ceará (UFC) - Campus Russas</p>
               <p className="text-muted-foreground leading-relaxed">
-                Atualmente curso Sistemas de Informação no Instituto Federal do Ceará (IFCE), com foco em
-                desenvolvimento de software, análise de sistemas e gestão de tecnologia da informação. Durante o curso,
-                tenho a oportunidade de aprender e aplicar conceitos fundamentais da programação, banco de dados,
-                engenharia de software e desenvolver projetos práticos que consolidam meu aprendizado.
+                Ingressante no curso de Engenharia de Software na UFC Campus Russas. O curso visa formar profissionais
+                capazes de desenvolver, manter e gerenciar sistemas de software complexos, com ênfase em práticas
+                ágeis, engenharia de requisitos e arquitetura de software.
               </p>
 
               <div className="grid md:grid-cols-2 gap-4 mt-6">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-secondary/10 rounded">
-                    <BookOpen className="h-5 w-5 text-secondary" />
+                    <Award className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <p className="font-medium">Desenvolvimento Web</p>
-                    <p className="text-sm text-muted-foreground">React, Angular, Node.js, Vue.js</p>
+                    <p className="font-medium">Engenharia de Software</p>
+                    <p className="text-sm text-muted-foreground">Arquitetura, Métodos Ágeis, UML</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-accent/10 rounded">
-                    <Network className="h-5 w-5 text-accent" />
+                    <BookOpen className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-medium">Interface e Experiência do Usuário</p>
-                    <p className="text-sm text-muted-foreground">UI/UX, Figma, Design Responsivo </p>
+                    <p className="font-medium">Desenvolvimento</p>
+                    <p className="text-sm text-muted-foreground">Programação, Banco de Dados</p>
                   </div>
                 </div>
               </div>

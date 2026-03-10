@@ -28,27 +28,6 @@ const projects: Project[] = [
     demoLabel: "Site Oficial",
   },
   {
-    title: "Obshop",
-    description:
-      "Prototipação de uma loja online de roupas do estilo streetwear, focada em um público jovem e descolado.",
-    image: "/Obshop.png",
-    technologies: ["Figma", "Design Responsivo", "Prototipação", "Design de UI/UX"],
-    github:
-      "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
-    demo:
-      "https://www.figma.com/design/eJBENEDHonxCfKt8Zlf9J7/Obshop?node-id=3-2&m=dev&t=f3KkZLwKqz7bhgci-1",
-    isFigma: true,
-  },
-  {
-    title: "Portfólio Pessoal",
-    description:
-      "Site de portfólio moderno e responsivo desenvolvido com as mais recentes tecnologias web.",
-    image: "/sitepessoal.png",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/esdrasbdev/Site-pessoal.git",
-    demo: "#",
-  },
-  {
     title: "Coffe Shop",
     description:
       "Aplicação web que permite gerenciar e realizar compras de cafés de forma simples e intuitiva.",
@@ -132,7 +111,12 @@ export function Projects() {
   }, [projects])
 
   return (
-    <section id="projetos" ref={sectionRef} className="py-20 px-4">
+    <section id="projetos" ref={sectionRef} className="py-20 px-4 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"></div>
+        <div className="absolute top-1/2 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2"></div>
+      </div>
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -142,7 +126,7 @@ export function Projects() {
           scrollbar-width: none; /* Firefox */
         }
       `}</style>
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 fade-in-item opacity-0">
           Projetos
         </h2>
@@ -155,19 +139,20 @@ export function Projects() {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="project-card w-full md:w-[380px] flex-shrink-0 md:snap-center overflow-hidden fade-in-item opacity-0 hover:shadow-xl transition-all duration-300 group flex flex-col"
+              className="project-card w-full md:w-[380px] flex-shrink-0 md:snap-center overflow-hidden fade-in-item opacity-0 hover:shadow-2xl transition-all duration-500 group flex flex-col hover:-translate-y-2"
             >
               <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-auto aspect-video object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-auto aspect-video object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
-              <div className="p-4 space-y-3 flex flex-col flex-1">
-                <h3 className="text-lg font-semibold">{project.title}</h3>
+              <div className="p-5 space-y-3 flex flex-col flex-1">
+                <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{project.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
@@ -176,7 +161,7 @@ export function Projects() {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
+                      className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium hover:bg-primary/20 transition-colors"
                     >
                       {tech}
                     </span>
@@ -188,7 +173,7 @@ export function Projects() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1 gap-2 bg-transparent"
+                    className="flex-1 gap-2 bg-transparent group-hover:bg-primary/10"
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -207,7 +192,7 @@ export function Projects() {
                   </Button>
                   )}
 
-                  <Button size="sm" className="flex-1 gap-2" asChild>
+                  <Button size="sm" className="flex-1 gap-2 group-hover:shadow-lg" asChild>
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4" />
                       {project.demoLabel || "Demo"}
@@ -223,7 +208,7 @@ export function Projects() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-10 w-10 shadow-md z-10 transition-opacity animate-in fade-in duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl"
               onClick={() => handleNav("left")}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -233,7 +218,7 @@ export function Projects() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-10 w-10 shadow-md z-10 transition-opacity animate-in fade-in duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl"
               onClick={() => handleNav("right")}
             >
               <ChevronRight className="h-5 w-5" />
