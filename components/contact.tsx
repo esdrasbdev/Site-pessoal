@@ -115,7 +115,7 @@ export function Contact() {
                 </a>
 
                 <a
-                  href="mailto:seu-email@exemplo.com"
+                  href="mailto:esdrassouzabrito1@gmail.com"
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                 >
                   <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">

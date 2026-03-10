@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-[90vh] md:min-h-[80vh] flex items-center justify-center pt-16 pb-8 md:pt-20 md:pb-12 px-4 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-16 pb-8 md:pt-20 md:pb-12 px-4 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>

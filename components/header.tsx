@@ -16,6 +16,17 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    // Cleanup on component unmount
+    return () => { document.body.style.overflow = "" }
+  }, [isMobileMenuOpen])
+
   const handleDownloadResume = () => {
     const link = document.createElement("a")
     link.href = "/curriculo-esdras-brito.pdf"
@@ -77,7 +88,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 top-[72px] bg-background/98 backdrop-blur-md z-40 animate-fade-in-up">
+          <div className="md:hidden fixed inset-0 top-[72px] bg-black/95 backdrop-blur-sm z-40 animate-fade-in">
             <nav className="flex flex-col items-center justify-center h-full gap-8 pb-20">
               {navItems.map((item, index) => (
                 <a

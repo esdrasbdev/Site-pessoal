@@ -111,7 +111,11 @@ export function Projects() {
   }, [projects])
 
   return (
-    <section id="projetos" ref={sectionRef} className="py-20 px-4 relative overflow-hidden">
+    <section
+      id="projetos"
+      ref={sectionRef}
+      className="relative flex min-h-screen items-center px-4 py-20"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"></div>
@@ -208,7 +212,7 @@ export function Projects() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl animate-fade-in"
               onClick={() => handleNav("left")}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -218,7 +222,7 @@ export function Projects() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background rounded-full h-12 w-12 shadow-lg z-10 transition-all duration-300 hover:scale-110 hover:shadow-xl animate-fade-in"
               onClick={() => handleNav("right")}
             >
               <ChevronRight className="h-5 w-5" />
