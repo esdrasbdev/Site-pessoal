@@ -44,14 +44,28 @@ export function Header() {
     { label: "Contato", href: "#contato" },
   ]
 
+  const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const targetHref = e.currentTarget.getAttribute("href")
+    if (!targetHref) return
+
+    setIsMobileMenuOpen(false)
+
+    // Adiciona um atraso para permitir que a animação de fechamento do menu termine antes de rolar
+    setTimeout(() => {
+      const element = document.querySelector(targetHref)
+      element?.scrollIntoView({ behavior: "smooth" })
+    }, 300)
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled && !isMobileMenuOpen ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative z-50">
           <a href="#" className="group relative">
             <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient group-hover:bg-[length:100%_auto] transition-all duration-500">
               ESDRAS BRITO
@@ -78,7 +92,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className={`md:hidden transition-colors ${isMobileMenuOpen ? "text-white" : "text-foreground"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -88,20 +102,26 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 top-[72px] bg-black/95 backdrop-blur-sm z-40 animate-fade-in">
-            <nav className="flex flex-col items-center justify-center h-full gap-8 pb-20">
+          <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-sm z-40 animate-fade-in">
+            <nav className="flex flex-col items-center justify-center h-full gap-8 pt-20 pb-10">
               {navItems.map((item, index) => (
                 <a
                   key={item.href}
                   href={item.href}
                   className="text-2xl font-medium text-foreground/80 hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ animationDelay: `${index * 50}ms` }}
+                  onClick={handleMobileLinkClick}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {item.label}
                 </a>
               ))}
-              <Button className="gap-2 mt-4" size="lg" onClick={handleDownloadResume}>
+              <Button
+                className="gap-2 mt-4"
+                size="lg"
+                onClick={() => {
+                  handleDownloadResume()
+                  setIsMobileMenuOpen(false)
+                }}>
                 <Download className="h-5 w-5" />
                 Baixar Currículo
               </Button>

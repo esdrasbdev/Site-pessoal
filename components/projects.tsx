@@ -22,7 +22,7 @@ const projects: Project[] = [
     description:
       "Landing page estratégica desenvolvida para uma advogada, focada em transmitir autoridade, apresentar serviços jurídicos e otimizar a captação de clientes.",
     image: "/advocacia.png",
-    technologies: ["JavaScript", "Node.js", "CSS" , "Figma"],
+    technologies: ["JavaScript", "Node.js", "CSS", "Figma"],
     github: "#",
     demo: "https://www.gessicasampaioadvocacia.com#",
     demoLabel: "Site Oficial",

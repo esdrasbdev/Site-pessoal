@@ -31,7 +31,7 @@ export function Hero() {
     >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
-      
+
       {/* Floating Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] left-[10%] w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
@@ -39,7 +39,7 @@ export function Hero() {
         <div className="absolute bottom-[20%] left-[20%] w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-[10%] right-[10%] w-48 h-48 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
       </div>
-      
+
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary-rgb),0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--primary-rgb),0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
 
@@ -59,18 +59,18 @@ export function Hero() {
             <span className="sm:hidden">Online</span>
           </span>
         </div>
-        
+
         <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-balance">
           Olá, eu sou <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">Esdras</span>
         </h1>
-        
+
         <p className="text-base md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto text-balance mb-8 md:mb-10">
           Paixão por tecnologia, design e criação de soluções digitais inovadoras
         </p>
-        
+
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-16">
-          <a 
-            href="#projetos" 
+          <a
+            href="#projetos"
             className="px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/25 group"
           >
             <span className="flex items-center gap-2">
@@ -78,8 +78,8 @@ export function Hero() {
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
             </span>
           </a>
-          <a 
-            href="#contato" 
+          <a
+            href="#contato"
             className="px-8 py-3.5 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary/10 transition-all duration-300 hover:scale-105 group"
           >
             <span className="flex items-center gap-2">
@@ -90,11 +90,11 @@ export function Hero() {
         </div>
 
         {/* Scroll Indicator - Fixed */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-4">
-          <a href="#sobre" className="flex flex-col items-center gap-0.5 text-muted-foreground/40 hover:text-muted-foreground transition-colors cursor-pointer">
-            <span className="text-[8px] uppercase tracking-widest hidden sm:block">Scroll</span>
-            <div className="w-4 h-6 border border-current rounded-full flex justify-center">
-              <div className="w-0.5 h-1.5 bg-current rounded-full animate-bounce mt-1"></div>
+        <div className="mt-8 md:absolute md:bottom-0 md:mt-0 md:left-1/2 md:-translate-x-1/2 z-30 flex justify-center w-full md:w-auto">
+          <a href="#sobre" className="flex flex-col items-center gap-1 text-muted-foreground/50 hover:text-white transition-colors">
+            <span className="text-[9px] uppercase tracking-[0.2em] mb-1">Scroll</span>
+            <div className="w-5 h-8 border-2 border-current rounded-full flex justify-center p-1">
+              <div className="w-1 h-1.5 bg-current rounded-full animate-bounce"></div>
             </div>
           </a>
         </div>
